@@ -42,7 +42,6 @@ if __name__ == '__main__':
             final.append(my)
         out1 = np.mean(np.array(final), axis=0)
         final1.append(out1)
-
     finalout = np.array(final1)
     maxout = np.max(finalout, axis=0)
     medianout = np.median(np.sort(finalout, axis=0)[0:-1], axis=0)
