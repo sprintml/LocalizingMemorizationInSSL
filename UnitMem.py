@@ -54,13 +54,10 @@ if __name__ == '__main__':
                 my = np.mean(v.reshape(256, 4).cpu().detach().numpy(), axis=1)
                 final.append(my)
         out1 = np.mean(np.array(final), axis=0)
-        #print(out1.shape)
         final1.append(out1)
 
     finalout = np.array(final1)
-    #print(finalout.shape)
     maxout = np.max(finalout, axis=0)
     medianout = np.median(np.sort(finalout, axis=0)[0:-1], axis=0)
     selectivity = (maxout - medianout)/(maxout + medianout)
-    #print(selectivity.shape)
     scipy.io.savemat('./data/selectivity_unit.mat', {'selectivity': selectivity})
