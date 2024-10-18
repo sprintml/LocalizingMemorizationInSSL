@@ -41,13 +41,13 @@ model.load_state_dict(torch.load('./model_weights.pth'))
 
 new_m = torchvision.models._utils.IntermediateLayerGetter(model,{'layer3_residual2': 'feat1'})
 
-final = []
+final1 = []
 
 
 
 if __name__ == '__main__':
     for img, label in tqdm(iter(dataloader)):
-        final1 = []
+        final = []
         for j in range(10):
             out = new_m(Aug(img))
             for k, v in out.items():
