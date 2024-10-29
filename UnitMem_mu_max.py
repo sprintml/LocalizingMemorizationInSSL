@@ -34,15 +34,13 @@ CIFAR_10_Dataset = torchvision.datasets.CIFAR10(datapath, train=True, download=F
 sublist = list(b)
 subset = torch.utils.data.Subset(CIFAR_10_Dataset, sublist)
 dataloader = torch.utils.data.DataLoader(subset, 1, shuffle=False, num_workers=2)
-
 model = ResNet9(3, 10)
 model.load_state_dict(torch.load('./model_weights.pth'))
 new_m = torchvision.models._utils.IntermediateLayerGetter(model,{'layer3_residual2': 'feat1'})
-final = []
 final1= []
 if __name__ == '__main__':
     for img, label in tqdm(iter(dataloader)):
-
+        final = []
         for j in range(10):
             out = new_m(Aug(img))
             for k, v in out.items():
